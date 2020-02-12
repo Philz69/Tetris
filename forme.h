@@ -4,6 +4,8 @@
 class Forme
 {
     public:
+    Forme();
+    ~Forme();
     void tourner();
     void tourner(int direction);
     void setX(int x1);
@@ -15,6 +17,14 @@ class Forme
     int x;
     int y;
     int matrice[MAX_SIZE][MAX_SIZE];
+}
+
+Forme::Forme()
+{
+    for(int i = 0; i < 5; i++)
+    {
+        matrice[i][2] = 1;
+    }
 }
 int Forme::getX()
 {
@@ -45,7 +55,7 @@ void Forme:: tourner()
         }
     }
 }
-}
+
 void Forme:: tourner(int direction)
 {
     int tmp[MAX_SIZE][MAX_SIZE];
