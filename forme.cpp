@@ -1,21 +1,67 @@
 #include "forme.h"
 
-Forme::Forme()
+Forme::Forme(int type)
 {
-    for(int i = 0; i < 5; i++)
+    if(type = FORMEI)
     {
-        for(int j = 0; j < 5; j++)
-        {
-            if(j != 2)
-            {
-                matrice[i][j] =0;
-            }
-            else
-            {
-                matrice[i][2] = 1;
-            }
-        }
-        matrice[4][2] = 2;
+        matrice[0][] = {0,0,0,0,0};
+        matrice[1][] = {0,0,1,0,0};
+        matrice[2][] = {0,0,1,0,0};
+        matrice[3][] = {0,0,1,0,0};
+        matrice[4][] = {0,0,1,0,0};
+
+    }
+    if(type = FORMEJ)
+    {
+        matrice[0][] = {0,0,0,0,0};
+        matrice[1][] = {0,1,0,0,0};
+        matrice[2][] = {0,1,1,1,0};
+        matrice[3][] = {0,0,0,0,0};
+        matrice[4][] = {0,0,0,0,0};
+
+    }
+    if(type = FORMEL)
+    {
+        matrice[0][] = {0,0,0,0,0};
+        matrice[1][] = {0,0,0,1,0};
+        matrice[2][] = {0,1,1,1,0};
+        matrice[3][] = {0,0,0,0,0};
+        matrice[4][] = {0,0,0,0,0};
+
+    }
+    if(type = FORMEO)
+    {
+        matrice[0][] = {0,0,0,0,0};
+        matrice[1][] = {0,0,0,0,0};
+        matrice[2][] = {0,0,1,1,0};
+        matrice[3][] = {0,0,1,1,0};
+        matrice[4][] = {0,0,0,0,0};
+        
+    }
+    if(type = FORMES)
+    {
+        matrice[0][] = {0,0,0,0,0};
+        matrice[1][] = {0,0,0,0,0};
+        matrice[2][] = {0,0,1,1,0};
+        matrice[3][] = {0,1,1,0,0};
+        matrice[4][] = {0,0,0,0,0};
+        
+    }
+    if(type = FORMET)
+    {
+        matrice[0][] = {0,0,0,0,0};
+        matrice[1][] = {0,0,1,0,0};
+        matrice[2][] = {0,1,1,1,0};
+        matrice[3][] = {0,0,0,0,0};
+        matrice[4][] = {0,0,0,0,0};
+    }
+    if(type = FORMEZ)
+    {
+        matrice[0][] = {0,0,0,0,0};
+        matrice[1][] = {0,0,0,0,0};
+        matrice[2][] = {0,1,1,0,0};
+        matrice[3][] = {0,0,1,1,0};
+        matrice[4][] = {0,0,0,0,0};
     }
 }
 Forme::~Forme()
