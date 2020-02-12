@@ -29,7 +29,7 @@ class Forme
     private:
         int x;
         int y;
-        int matrice[MAX_SIZE][MAX_SIZE];
+        int matrice[MAX_SIZE][MAX_SIZE] = {0};
 };
 
 
