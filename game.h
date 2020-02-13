@@ -6,7 +6,6 @@
 #define LARGEUR 10
 #define HAUTEUR 24  
 
-
 class Game
 {
     public:
@@ -24,5 +23,5 @@ class Game
     private:
         Forme *curForme;
         int board[HAUTEUR][LARGEUR] = {0};
-        double lastAction, curTime;
+        std::chrono::time_point<std::chrono::high_resolution_clock> lastAction, curTime;
 };

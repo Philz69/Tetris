@@ -2,29 +2,30 @@
 
 using namespace std;
 
-Game :: Game()
+Game ::Game()
 {
     curForme = new Forme(rand() % FORMEZ);
     curForme->setX(4);
     curForme->setY(2);
+    lastAction = std::chrono::high_resolution_clock::now();
 }
 Game ::~Game()
 {
     detruireForme(curForme);
 }
 
-void Game :: afficher()
+void Game ::afficher()
 {
     int offsetX;
     int offsetY;
-    for(int i = 0; i < HAUTEUR; i++)
+    for (int i = 0; i < HAUTEUR; i++)
     {
         cout << '|';
-        for(int j = 0; j < LARGEUR; j++)
+        for (int j = 0; j < LARGEUR; j++)
         {
             offsetX = curForme->getX() - j + 2;
             offsetY = curForme->getY() - i + 2;
-            if(board[i][j] == 1 || curForme->getTile(offsetX, offsetY) == 1)
+            if (board[i][j] == 1 || curForme->getTile(offsetX, offsetY) == 1)
             {
                 cout << "#";
             }
@@ -36,18 +37,17 @@ void Game :: afficher()
         cout << "|" << '\n';
     }
     cout << flush;
-   
 }
 
-bool Game :: collision(Forme *forme)
+bool Game ::collision(Forme *forme)
 {
     int xforme = forme->getX();
     int yforme = forme->getY();
-    for(int i = 0; i < MAX_SIZE; i++)
+    for (int i = 0; i < MAX_SIZE; i++)
     {
-        for(int j = 0; j < MAX_SIZE; j++)
+        for (int j = 0; j < MAX_SIZE; j++)
         {
-            if( ( board[yforme + (i -2)][xforme +(j -2)] == 1 && forme->getTile(i,j) == 1 ) || yforme + (i -2) > 23)
+            if ((board[yforme + (i - 2)][xforme + (j - 2)] == 1 && forme->getTile(i, j) == 1) || yforme + (i - 2) > 23)
             {
                 return true;
             }
@@ -56,74 +56,70 @@ bool Game :: collision(Forme *forme)
 
     return false;
 }
-void Game :: input()
+void Game ::input()
 {
-    if(kbhit())
+    if (kbhit())
     {
-    int pressedChar;
-    pressedChar = getch();
-    if(pressedChar == 77)
-    {
-        tournerForme(curForme);
-        afficher();
-    }
-    }
-}
-void Game :: descendreForme(Forme *forme)
-{
-        forme->setY(forme->getY() - 1);
-        if(collision(forme) == true)
+        int pressedChar;
+        pressedChar = getch();
+        if (pressedChar == 77)
         {
-            forme->setY(forme->getY() + 1);
-            formeVersBoard(forme);
-            detruireForme(forme);
-            nouvelleForme(forme);
+            tournerForme(curForme);
+            afficher();
         }
+    }
 }
-void Game :: tournerForme(Forme *forme)
+void Game ::descendreForme(Forme *forme)
+{
+    forme->setY(forme->getY() + 1);
+    if (collision(forme) == true)
+    {
+        forme->setY(forme->getY() - 1);
+        formeVersBoard(forme);
+        detruireForme(forme);
+        nouvelleForme(forme);
+    }
+}
+void Game ::tournerForme(Forme *forme)
 {
     curForme->tourner();
 }
-void Game :: nouvelleForme(Forme *forme)
+void Game ::nouvelleForme(Forme *forme)
 {
     forme = new Forme(rand() % FORMEZ);
     forme->setX(5);
     forme->setY(2);
 }
-void Game :: detruireForme(Forme *forme)
+void Game ::detruireForme(Forme *forme)
 {
-  delete forme;
-
+    delete forme;
 }
 
-void Game :: formeVersBoard(Forme *forme)
+void Game ::formeVersBoard(Forme *forme)
 {
-    cout << "TEST" << endl;
-    cout << forme->getX() << endl;
-      cout << "TEST2" << endl;
     int xforme = forme->getX();
-  
     int yforme = forme->getY();
-     for(int i = 0; i < MAX_SIZE; i++)
+
+    for (int i = 0; i < MAX_SIZE; i++)
     {
-        for(int j = 0; j < MAX_SIZE; j++)
+        for (int j = 0; j < MAX_SIZE; j++)
         {
-            board[yforme + (i -2)][xforme +(j -2)] = forme->getTile(i,j);
+            board[yforme + (i - 2)][xforme + (j - 2)] = forme->getTile(i, j);
         }
     }
 }
 
-void Game :: loop()
+void Game ::loop()
 {
-    while(true)
+    afficher();
+    while (true)
     {
-    input();
-    /*if(lastAction - curTime > 500)
-    {
-        descendreForme(curForme);
-    }*/
-
+        input();
+        if (std::chrono::high_resolution_clock::now() - lastAction > std::chrono::milliseconds{500})
+        {
+            descendreForme(curForme);
+            afficher();
+            lastAction = std::chrono::high_resolution_clock::now();
+        }
     }
-
-    
 }

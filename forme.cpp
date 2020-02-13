@@ -126,7 +126,7 @@ int Forme::getTile(int i, int j)
 {
     if(i >= MAX_SIZE || j >= MAX_SIZE || i < 0 || j < 0)
     {
-        return -1;
+        return 0;
     }
     return matrice[i][j];
 }
