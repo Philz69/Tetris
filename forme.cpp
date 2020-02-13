@@ -12,7 +12,7 @@ Forme::Forme(int type)
        matrice[3] = new int[MAX_SIZE] {0,0,1,0,0};
        matrice[4] = new int[MAX_SIZE] {0,0,1,0,0};
     }
-    if(type == FORMEJ)
+    else if(type == FORMEJ)
     {
        matrice = new int*[MAX_SIZE];
        matrice[0] = new int[MAX_SIZE] {0,0,0,0,0};
@@ -21,7 +21,7 @@ Forme::Forme(int type)
        matrice[3] = new int[MAX_SIZE] {0,0,0,0,0};
        matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
-    if(type == FORMEL)
+    else if(type == FORMEL)
     {
        matrice = new int*[MAX_SIZE];
        matrice[0] = new int[MAX_SIZE] {0,0,0,0,0};
@@ -30,7 +30,7 @@ Forme::Forme(int type)
        matrice[3] = new int[MAX_SIZE] {0,0,0,0,0};
        matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
-    if(type == FORMEO)
+    else if(type == FORMEO)
     {
        
        matrice = new int*[MAX_SIZE];
@@ -40,7 +40,7 @@ Forme::Forme(int type)
        matrice[3] = new int[MAX_SIZE] {0,0,1,1,0};
        matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
-    if(type == FORMES)
+    else if(type == FORMES)
     {
        matrice = new int*[MAX_SIZE];
        matrice[0] = new int[MAX_SIZE] {0,0,0,0,0};
@@ -49,7 +49,7 @@ Forme::Forme(int type)
        matrice[3] = new int[MAX_SIZE] {0,1,1,0,0};
        matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
-    if(type == FORMET)
+    else if(type == FORMET)
     {
        matrice = new int*[MAX_SIZE];
        matrice[0] = new int[MAX_SIZE] {0,0,0,0,0};
@@ -58,7 +58,7 @@ Forme::Forme(int type)
        matrice[3] = new int[MAX_SIZE] {0,0,0,0,0};
        matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
-    if(type == FORMEZ)
+    else if(type == FORMEZ)
     {
        matrice = new int*[MAX_SIZE];
        matrice[0] = new int[MAX_SIZE] {0,0,0,0,0};
@@ -98,32 +98,25 @@ void Forme::tourner()
 
 void Forme:: tourner(int direction)
 {
-                cout << "TEST" << endl;
     int **tmp = new int*[MAX_SIZE];
 
-                cout << "TEST" << endl;
     for(int i=0;i< MAX_SIZE;i++)
     {
-                cout << "TEST" << endl;
-        tmp[i] = new int[MAX_SIZE];
-                cout << "TEST" << endl;
+        tmp[i] = new int[MAX_SIZE] {0};
         for(int j=0;j< MAX_SIZE;j++)
         {
             if(direction == GAUCHE)
             {
-                cout << "BEFORE DELETE" << endl;
             tmp[i][j] = matrice[j][i];
             }
             else
             {
-                cout << "BEFORE DELETE" << endl;
             tmp[i][j] = matrice[MAX_SIZE - 1 - j][i];
             }
         }
     }
 
 
-                cout << "BEFORE DELETE" << endl;
     delete matrice;
     matrice = tmp;
 }
@@ -131,10 +124,9 @@ void Forme:: tourner(int direction)
 
 int Forme::getTile(int i, int j)
 {
-    if(i > MAX_SIZE || j > MAX_SIZE)
+    if(i >= MAX_SIZE || j >= MAX_SIZE)
     {
-        return -1;
+        return 0;
     }
     return matrice[i][j];
 }
-#

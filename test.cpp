@@ -5,22 +5,22 @@ void Test::testFormes()
 {
 	Forme I(FORMEI);
 	afficherForme(I);
-	I.tourner();
+	I.tourner(GAUCHE);
 	afficherForme(I);
-	I.tourner();
+	I.tourner(GAUCHE);
 	afficherForme(I);
-	I.tourner();
+	I.tourner(GAUCHE);
 	afficherForme(I);
 }
 
 void Test::afficherForme(Forme forme)
 {
-	for(int i = 0; i < MAX_SIZE; i++)
+	for (int i = 0; i < MAX_SIZE; i++)
 	{
-	for(int j = 0; j < MAX_SIZE; j++)
-	{
-		cout << forme.getTile(i,j);
-	}
-	cout << endl;
+		for (int j = 0; j < MAX_SIZE; j++)
+		{
+			cout << forme.getTile(i, j) << " ";
+		}
+		cout << endl;
 	}
 }
