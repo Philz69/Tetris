@@ -12,15 +12,15 @@ class Game
     public:
         Game();
         ~Game();
+        void afficher();
         bool collision(Forme *forme);
         void input();
-        void tournerForme(Forme *forme);
-        void tournerForme(Forme *forme, int direction);
         void bougerForme(Forme *forme, int x, int y);
         void changerForme();
+        void tournerForme(Forme *forme);
+        void tournerForme(Forme *forme, int direction);
         void formeVersBoard(Forme *forme);
         void loop();
-        void afficher();
     private:
         Forme *curForme;
         int board[HAUTEUR][LARGEUR] = {0};

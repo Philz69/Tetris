@@ -95,6 +95,51 @@ void Game ::input()
         }
     }
 }
+void Game::bougerForme(Forme *forme, int x, int y)
+{
+    int xInitial = forme->getX();
+    int yInitial = forme->getY();
+    if (x > 0)
+    {
+
+        for (int i = 0; i <= x; i++)
+        {
+            forme->setX(xInitial + i);
+            cout << "xInitial + i: " << xInitial << "+" << i << "=" << xInitial + i << endl;
+            if (collision(forme) == true)
+            {
+                forme->setX(xInitial + i - 1);
+                break;
+            }
+        }
+    }
+    else if (x < 0)
+    {
+        for (int i = 0; i >= x; i--)
+        {
+            forme->setX(xInitial + i);
+            cout << "xInitial + i: " << xInitial << "+" << i << "=" << xInitial + i << endl;
+            if (collision(forme) == true)
+            {
+                forme->setX(xInitial + i + 1);
+                break;
+            }
+        }
+    }
+    for (int i = 0; i <= y; i++)
+    {
+        forme->setY(yInitial + i);
+        if (collision(forme) == true)
+        {
+            forme->setY(yInitial + i - 1);
+            formeVersBoard(forme);
+            changerForme();
+            break;
+        }
+    }
+
+}
+
 void Game ::changerForme()
 {
     Forme *tmp = new Forme(rand() % FORMEZ);
@@ -103,10 +148,12 @@ void Game ::changerForme()
     delete curForme;
     curForme = tmp;
 }
+
 void Game ::tournerForme(Forme *forme)
 {
     tournerForme(forme, DROITE);
 }
+
 void Game ::tournerForme(Forme *forme, int direction)
 {
     forme->tourner(direction);
@@ -151,46 +198,4 @@ void Game::loop()
     }
 }
 
-void Game::bougerForme(Forme *forme, int x, int y)
-{
-    int xInitial = forme->getX();
-    int yInitial = forme->getY();
-    if (x > 0)
-    {
 
-        for (int i = 0; i <= x; i++)
-        {
-            forme->setX(xInitial + i);
-            cout << "xInitial + i: " << xInitial << "+" << i << "=" << xInitial + i << endl;
-            if (collision(forme) == true)
-            {
-                forme->setX(xInitial + i - 1);
-                break;
-            }
-        }
-    }
-    else if (x < 0)
-    {
-        for (int i = 0; i >= x; i--)
-        {
-            forme->setX(xInitial + i);
-            cout << "xInitial + i: " << xInitial << "+" << i << "=" << xInitial + i << endl;
-            if (collision(forme) == true)
-            {
-                forme->setX(xInitial + i + 1);
-                break;
-            }
-        }
-    }
-    for (int i = 0; i <= y; i++)
-    {
-        forme->setY(yInitial + i);
-        if (collision(forme) == true)
-        {
-            forme->setY(yInitial + i - 1);
-            formeVersBoard(forme);
-            changerForme();
-            break;
-        }
-    }
-}
