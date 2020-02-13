@@ -48,13 +48,17 @@ void Game ::afficher()
 
 bool Game ::collision(Forme *forme)
 {
-    int xforme = forme->getX();
-    int yforme = forme->getY();
+    int xCentreForme = forme->getX();
+    int yCentreForme = forme->getY();
+    int xGlobal;
+    int yGlobal; 
     for (int i = 0; i < MAX_SIZE; i++)
     {
         for (int j = 0; j < MAX_SIZE; j++)
         {
-            if (forme->getTile(i,j) == 1 && ( board[yforme + (i - 2)][xforme + (j - 2)] == 1 || yforme + (i - 2) >= 23))
+            xGlobal = xCentreForme + (j-2);
+            yGlobal = yCentreForme + (i-2);
+            if (forme->getTile(i,j) == 1 && ( board[yGlobal][xGlobal] == 1 || yGlobal >= 23))
             {
                 return true;
             }
