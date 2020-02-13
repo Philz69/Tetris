@@ -15,7 +15,8 @@ Game ::Game()
     curForme->setY(2);
     lastAction = std::chrono::high_resolution_clock::now();
     alive = true;
-}k
+    score = 0;
+}
 Game ::~Game()
 {
     delete curForme;
@@ -25,7 +26,7 @@ void Game ::afficher()
 {
     int offsetX;
     int offsetY;
-    cout << "______" << '\n';
+    cout << "__" << setw(5) << score << "__" << '\n';
     for (int i = 0; i < HAUTEUR; i++)
     {
         cout << setw(2) << i << setw(1) << '|';
@@ -74,6 +75,7 @@ bool Game::collision(Forme *forme)
 void Game::ligneComplete()
 {
     int lignePleine = 1;
+    int nmbLignes = 0;
     for (int i = 0; i < HAUTEUR; i++)
     {
         lignePleine = 1;
@@ -87,12 +89,27 @@ void Game::ligneComplete()
         if(lignePleine == 1)
         {
             shiftBoard(i);
+            nmbLignes++;
             i--;
         }
     }
-
+	if(nmbLignes == 1)
+	{
+		score += 40;
+	}
+	if(nmbLignes == 2)
+	{
+		score += 100;
+	}
+	if(nmbLignes == 3)
+	{
+		score += 300;
+	}
+	if(nmbLignes > 3)
+	{
+		score += 400 * nmbLignes;
+	}
 }
-
 void Game::shiftBoard(int index)
 {
     for(int i = index; i > 0; i--)

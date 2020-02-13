@@ -27,6 +27,7 @@ class Game
     private:
         Forme *curForme;
         int board[HAUTEUR][LARGEUR] = {0};
+        int score;
         bool alive; 
         std::chrono::time_point<std::chrono::high_resolution_clock> lastAction, curTime;
 };
