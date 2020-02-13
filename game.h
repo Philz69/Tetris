@@ -14,7 +14,6 @@ class Game
         ~Game();
         bool collision(Forme *forme);
         void input();
-        void descendreForme(Forme *forme);
         void tournerForme(Forme *forme);
         void tournerForme(Forme *forme, int direction);
         void bougerForme(Forme *forme, int x, int y);

@@ -95,16 +95,6 @@ void Game ::input()
         }
     }
 }
-void Game ::descendreForme(Forme *forme)
-{
-    forme->setY(forme->getY() + 1);
-    if (collision(forme) == true)
-    {
-        forme->setY(forme->getY() - 1);
-        formeVersBoard(forme);
-        changerForme();
-    }
-}
 void Game ::changerForme()
 {
     Forme *tmp = new Forme(rand() % FORMEZ);
@@ -154,7 +144,7 @@ void Game::loop()
         input();
         if (std::chrono::high_resolution_clock::now() - lastAction > std::chrono::milliseconds{500})
         {
-            descendreForme(curForme);
+            bougerForme(curForme, 0, -1);
             afficher();
             lastAction = std::chrono::high_resolution_clock::now();
         }
