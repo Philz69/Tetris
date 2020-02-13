@@ -5,7 +5,7 @@ using namespace std;
 Game :: Game()
 {
     curForme = new Forme(rand() % FORMEZ);
-    curForme->setX(5);
+    curForme->setX(4);
     curForme->setY(2);
 }
 Game ::~Game()
@@ -15,30 +15,27 @@ Game ::~Game()
 
 void Game :: afficher()
 {
-    cout << "TEST2" << endl;
-    cout << curForme->getX() << endl;
-
     int offsetX;
     int offsetY;
-    formeVersBoard(curForme);
-      for(int i = 0; i < HAUTEUR; i++)
+    for(int i = 0; i < HAUTEUR; i++)
     {
+        cout << '|';
         for(int j = 0; j < LARGEUR; j++)
         {
-            /*offsetX = curForme->getX() - j + 2;
+            offsetX = curForme->getX() - j + 2;
             offsetY = curForme->getY() - i + 2;
-            
-            if(board[i][j] == 1  || (curForme->getTile(offsetX, offsetY) == 1))
+            if(board[i][j] == 1 || curForme->getTile(offsetX, offsetY) == 1)
             {
                 cout << "#";
             }
-            else*/
+            else
             {
-                cout << "o";
+                cout << " ";
             }
         }
-        cout << endl;
+        cout << "|" << '\n';
     }
+    cout << flush;
    
 }
 
@@ -61,7 +58,16 @@ bool Game :: collision(Forme *forme)
 }
 void Game :: input()
 {
-
+    if(kbhit())
+    {
+    int pressedChar;
+    pressedChar = getch();
+    if(pressedChar == 77)
+    {
+        tournerForme(curForme);
+        afficher();
+    }
+    }
 }
 void Game :: descendreForme(Forme *forme)
 {
@@ -76,6 +82,7 @@ void Game :: descendreForme(Forme *forme)
 }
 void Game :: tournerForme(Forme *forme)
 {
+    curForme->tourner();
 }
 void Game :: nouvelleForme(Forme *forme)
 {
@@ -101,8 +108,6 @@ void Game :: formeVersBoard(Forme *forme)
     {
         for(int j = 0; j < MAX_SIZE; j++)
         {
-            cout << "I: " << i << endl;
-            cout << "J: " << j << endl;
             board[yforme + (i -2)][xforme +(j -2)] = forme->getTile(i,j);
         }
     }

@@ -2,6 +2,7 @@
 #include <chrono>
 #include <stdlib.h>
 #include <iostream>
+#include <conio.h>
 #define LARGEUR 10
 #define HAUTEUR 24  
 

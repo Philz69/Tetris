@@ -7,10 +7,10 @@ using namespace std;
 
 int main()
 {
-    Test tests;
-    tests.testFormes();
+    //Test tests;
+    //tests.testFormes();
 
     Game jeu;
-    jeu.afficher();
+    jeu.loop();
     return 0;
 }
