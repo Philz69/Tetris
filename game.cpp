@@ -115,7 +115,15 @@ void Game ::changerForme()
 }
 void Game ::tournerForme(Forme *forme)
 {
-    curForme->tourner();
+    tournerForme(forme, DROITE)
+}
+void Game ::tournerForme(Forme *forme, int direction)
+{
+    forme->tourner(direction);
+    if(collision == true)
+    {
+        forme->tourner(direction);
+    }
 }
 void Game ::nouvelleForme(Forme *forme)
 {
