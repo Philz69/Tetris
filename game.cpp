@@ -9,6 +9,7 @@ using namespace std;
 
 Game ::Game()
 {
+    srand(time(NULL));
     curForme = new Forme(rand() % FORMEZ);
     curForme->setX(4);
     curForme->setY(2);
@@ -138,7 +139,6 @@ void Game::bougerForme(Forme *forme, int x, int y)
         for (int i = 0; i <= x; i++)
         {
             forme->setX(xInitial + i);
-            cout << "xInitial + i: " << xInitial << "+" << i << "=" << xInitial + i << endl;
             if (collision(forme) == true)
             {
                 forme->setX(xInitial + i - 1);
@@ -151,7 +151,6 @@ void Game::bougerForme(Forme *forme, int x, int y)
         for (int i = 0; i >= x; i--)
         {
             forme->setX(xInitial + i);
-            cout << "xInitial + i: " << xInitial << "+" << i << "=" << xInitial + i << endl;
             if (collision(forme) == true)
             {
                 forme->setX(xInitial + i + 1);
@@ -200,19 +199,16 @@ void Game ::formeVersBoard(Forme *forme)
 {
     int xforme = forme->getX();
     int yforme = forme->getY();
-    cout << "Center coords: " << yforme << "," << xforme << endl;
 
     for (int i = 0; i < MAX_SIZE; i++)
     {
         for (int j = 0; j < MAX_SIZE; j++)
         {
-            cout << forme->getTile(i, j);
             if (forme->getTile(i, j) == 1)
             {
                 board[yforme + (i - 2)][xforme + (j - 2)] = forme->getTile(i, j);
             }
         }
-        cout << endl;
     }
 }
 
