@@ -16,7 +16,7 @@ Game ::Game()
 }
 Game ::~Game()
 {
-    detruireForme(curForme);
+    delete curForme;
 }
 
 void Game ::afficher()
@@ -124,16 +124,6 @@ void Game ::tournerForme(Forme *forme, int direction)
     {
         forme->tourner(direction * -1);
     }
-}
-void Game ::nouvelleForme(Forme *forme)
-{
-    forme = new Forme(rand() % FORMEZ);
-    forme->setX(5);
-    forme->setY(2);
-}
-void Game ::detruireForme(Forme *forme)
-{
-    delete forme;
 }
 
 void Game ::formeVersBoard(Forme *forme)
