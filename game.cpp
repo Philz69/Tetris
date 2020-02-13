@@ -247,6 +247,7 @@ void Game::loop()
             afficher();
             ligneComplete();
             afficher();
+            mort();
             lastAction = std::chrono::high_resolution_clock::now();
         }
     }
