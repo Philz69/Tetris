@@ -18,14 +18,15 @@ void Game ::afficher()
 {
     int offsetX;
     int offsetY;
+    cout << "______" << '\n';
     for (int i = 0; i < HAUTEUR; i++)
     {
-        cout << '|';
+        cout << setw(2) << i << setw(1) << '|';
         for (int j = 0; j < LARGEUR; j++)
         {
-            offsetX = curForme->getX() - j + 2;
-            offsetY = curForme->getY() - i + 2;
-            if (board[i][j] == 1 || curForme->getTile(offsetX, offsetY) == 1)
+            offsetX = -(curForme->getX() - j - 2);
+            offsetY = -(curForme->getY() - i - 2);
+            if (board[i][j] == 1 || curForme->getTile(offsetY, offsetX) == 1)
             {
                 cout << "#";
             }
@@ -36,6 +37,7 @@ void Game ::afficher()
         }
         cout << "|" << '\n';
     }
+    cout << "______" << '\n';
     cout << flush;
 }
 
@@ -62,6 +64,11 @@ void Game ::input()
     {
         int pressedChar;
         pressedChar = getch();
+        if (pressedChar == 75)
+        {
+            formeVersBoard(curForme);
+            afficher();
+        }
         if (pressedChar == 77)
         {
             tournerForme(curForme);
@@ -106,16 +113,19 @@ void Game ::formeVersBoard(Forme *forme)
 {
     int xforme = forme->getX();
     int yforme = forme->getY();
+    cout << "Center coords: " << yforme << "," << xforme << endl;
 
     for (int i = 0; i < MAX_SIZE; i++)
     {
         for (int j = 0; j < MAX_SIZE; j++)
         {
+            cout << forme->getTile(i,j);
             if(forme->getTile(i,j) == 1)
             {
                 board[yforme + (i - 2)][xforme + (j - 2)] = forme->getTile(i, j);
             }
         }
+        cout << endl;
     }
 }
 
