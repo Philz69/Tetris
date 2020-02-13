@@ -1,4 +1,5 @@
 #include "forme.h"
+using namespace std;
 
 Forme::Forme(int type)
 {
@@ -97,25 +98,32 @@ void Forme::tourner()
 
 void Forme:: tourner(int direction)
 {
+                cout << "TEST" << endl;
     int **tmp = new int*[MAX_SIZE];
 
+                cout << "TEST" << endl;
     for(int i=0;i< MAX_SIZE;i++)
     {
+                cout << "TEST" << endl;
         tmp[i] = new int[MAX_SIZE];
+                cout << "TEST" << endl;
         for(int j=0;j< MAX_SIZE;j++)
         {
             if(direction == GAUCHE)
             {
+                cout << "BEFORE DELETE" << endl;
             tmp[i][j] = matrice[j][i];
             }
             else
             {
+                cout << "BEFORE DELETE" << endl;
             tmp[i][j] = matrice[MAX_SIZE - 1 - j][i];
             }
         }
     }
 
 
+                cout << "BEFORE DELETE" << endl;
     delete matrice;
     matrice = tmp;
 }

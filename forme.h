@@ -2,6 +2,7 @@
 #define FORME_H
 
 #include <math.h>
+#include <iostream>
 #define MAX_SIZE 5
 #define GAUCHE 0
 #define DROITE 1
