@@ -18,6 +18,7 @@ class Game
         void tournerForme(Forme *forme);
         void nouvelleForme(Forme *forme);
         void detruireForme(Forme *forme);
+        void bougerForme(Forme *forme, int x, int y);
         void changerForme();
         void formeVersBoard(Forme *forme);
         void loop();

@@ -1,5 +1,10 @@
 #include "game.h"
 
+#define FLECHE_GAUCHE 75
+#define FLECHE_DROITE 77
+#define FLECHE_HAUT 72
+#define FLECHE_BAS 80
+
 using namespace std;
 
 Game ::Game()
@@ -49,7 +54,7 @@ bool Game ::collision(Forme *forme)
     {
         for (int j = 0; j < MAX_SIZE; j++)
         {
-            if ((board[yforme + (i - 2)][xforme + (j - 2)] == 1 && forme->getTile(i, j) == 1) || yforme + (i - 2) > 23)
+            if (forme->getTile(i,j) == 1 && ( board[yforme + (i - 2)][xforme + (j - 2)] == 1 || yforme + (i - 2) >= 23))
             {
                 return true;
             }
@@ -64,15 +69,24 @@ void Game ::input()
     {
         int pressedChar;
         pressedChar = getch();
-        if (pressedChar == 75)
+        switch(pressedChar)
         {
-            formeVersBoard(curForme);
-            afficher();
-        }
-        if (pressedChar == 77)
-        {
+        case FLECHE_HAUT:
             tournerForme(curForme);
             afficher();
+            break;
+        case FLECHE_DROITE:
+            bougerForme(curForme, 1, 0);
+            afficher();
+            break;
+        case FLECHE_GAUCHE:
+            bougerForme(curForme, -1,0);
+            afficher();
+            break;
+        case FLECHE_BAS:
+            bougerForme(curForme, 0, 23);
+            afficher();
+            break;
         }
     }
 }
@@ -143,3 +157,19 @@ void Game ::loop()
         }
     }
 }
+
+    void Game::bougerForme(Forme *forme, int x, int y)
+    {
+        forme->setX(forme->getX() + x); 
+        for(int i = 0; i < y; i++)
+        {
+            forme->setY(forme->getY() + 1); 
+            if (collision(forme) == true)
+            {
+                forme->setY(forme->getY() - 1);
+                formeVersBoard(forme);
+                changerForme();
+                break;
+            }
+        } 
+    }
