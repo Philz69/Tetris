@@ -14,7 +14,8 @@ Game ::Game()
     curForme->setX(4);
     curForme->setY(2);
     lastAction = std::chrono::high_resolution_clock::now();
-}
+    alive = true;
+}k
 Game ::~Game()
 {
     delete curForme;
@@ -102,6 +103,15 @@ void Game::shiftBoard(int index)
         }
     }
 }
+
+void Game::mort()
+{
+    if(curForme->getY < 3 && collision() == true)
+    {
+        alive = false;
+    }
+}
+
 void Game ::input()
 {
     if (kbhit())
@@ -215,7 +225,7 @@ void Game ::formeVersBoard(Forme *forme)
 void Game::loop()
 {
     afficher();
-    while (true)
+    while (alive)
     {
         input();
         if (std::chrono::high_resolution_clock::now() - lastAction > std::chrono::milliseconds{500})
@@ -227,6 +237,7 @@ void Game::loop()
             lastAction = std::chrono::high_resolution_clock::now();
         }
     }
+    cout << "GAME OVER" << endl;
 }
 
 

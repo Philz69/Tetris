@@ -17,6 +17,7 @@ class Game
         void ligneComplete();
         void shiftBoard(int index);
         void input();
+        void mort();
         void bougerForme(Forme *forme, int x, int y);
         void changerForme();
         void tournerForme(Forme *forme);
@@ -26,5 +27,6 @@ class Game
     private:
         Forme *curForme;
         int board[HAUTEUR][LARGEUR] = {0};
+        bool alive; 
         std::chrono::time_point<std::chrono::high_resolution_clock> lastAction, curTime;
 };
