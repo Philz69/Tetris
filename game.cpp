@@ -24,17 +24,13 @@ Game ::~Game()
 
 void Game ::afficher()
 {
-    int offsetX;
-    int offsetY;
     cout << "__" << setw(5) << score << "__" << '\n';
     for (int i = 0; i < HAUTEUR; i++)
     {
         cout << setw(2) << i << setw(1) << '|';
         for (int j = 0; j < LARGEUR; j++)
         {
-            offsetX = -(curForme->getX() - j - 2);
-            offsetY = -(curForme->getY() - i - 2);
-            if (board[i][j] == 1 || curForme->getTile(offsetY, offsetX) == 1)
+            if (board[i][j] == 1 || curForme->getTileGlobal(i,j) == 1)
             {
                 cout << "#";
             }
@@ -123,7 +119,7 @@ void Game::shiftBoard(int index)
 
 void Game::mort()
 {
-    if(curForme->getY < 3 && collision() == true)
+    if(curForme->getY < 3 && collision(curForme) == true)
     {
         alive = false;
     }

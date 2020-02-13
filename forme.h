@@ -28,6 +28,7 @@ class Forme
         int getX();
         int getY();
         int getTile(int i, int j);  
+        int getTileGlobal(int i, int j);
     private:
         int x;
         int y;

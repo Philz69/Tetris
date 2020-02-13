@@ -130,3 +130,17 @@ int Forme::getTile(int i, int j)
     }
     return matrice[i][j];
 }
+
+int Forme::getTileGlobal(int i, int j)
+{
+            int offsetX = -(x - j - 2);
+            int offsetY = -(y - i - 2);
+            if(offsetX > 0 && offsetX < MAX_SIZE && offsetY > 0 && offsetY < MAX_SIZE)
+            {
+                return matrice[offsetX][offsetY];
+            }
+            else
+            {
+                return 0;
+            }
+}
