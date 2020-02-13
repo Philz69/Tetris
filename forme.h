@@ -19,6 +19,7 @@ class Forme
 {
     public:
         Forme(int type);
+        ~Forme();
         void tourner();
         void tourner(int direction);
         void setX(int x1);
@@ -29,7 +30,7 @@ class Forme
     private:
         int x;
         int y;
-        int matrice[MAX_SIZE][MAX_SIZE] = {0};
+        int **matrice;
 };
 
 

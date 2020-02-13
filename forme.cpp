@@ -4,76 +4,75 @@ Forme::Forme(int type)
 {
     if(type == FORMEI)
     {
-       //int matrice[MAX_SIZE][MAX_SIZE] = 
-       //{{0,0,0,0,0},
-       //{0,0,1,0,0},
-       //{0,0,1,0,0},
-       //{0,0,1,0,0},
-       //{0,0,1,0,0}};
-        matrice[1][2] = 1;
-        matrice[2][2] = 1;
-        matrice[3][2] = 1;
-        matrice[4][2] = 1;
+       matrice = new int*[MAX_SIZE];
+       matrice[0] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[1] = new int[MAX_SIZE] {0,0,1,0,0};
+       matrice[2] = new int[MAX_SIZE] {0,0,1,0,0};
+       matrice[3] = new int[MAX_SIZE] {0,0,1,0,0};
+       matrice[4] = new int[MAX_SIZE] {0,0,1,0,0};
     }
     if(type == FORMEJ)
     {
-        int matrice[MAX_SIZE][MAX_SIZE] = 
-        {{0,0,0,0,0},
-        {0,1,0,0,0},
-        {0,1,1,1,0},
-        {0,0,0,0,0},
-        {0,0,0,0,0}};
-
+       matrice = new int*[MAX_SIZE];
+       matrice[0] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[1] = new int[MAX_SIZE] {0,1,0,0,0};
+       matrice[2] = new int[MAX_SIZE] {0,1,1,1,0};
+       matrice[3] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
     if(type == FORMEL)
     {
-        int matrice[MAX_SIZE][MAX_SIZE] = 
-        {{0,0,0,0,0},
-        {0,0,0,1,0},
-        {0,1,1,1,0},
-        {0,0,0,0,0},
-        {0,0,0,0,0}};
-
+       matrice = new int*[MAX_SIZE];
+       matrice[0] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[1] = new int[MAX_SIZE] {0,0,0,1,0};
+       matrice[2] = new int[MAX_SIZE] {0,1,1,1,0};
+       matrice[3] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
     if(type == FORMEO)
     {
-        int matrice[MAX_SIZE][MAX_SIZE] = 
-        {{0,0,0,0,0},
-        {0,0,0,0,0},
-        {0,0,1,1,0},
-        {0,0,1,1,0},
-        {0,0,0,0,0}};
-        
+       
+       matrice = new int*[MAX_SIZE];
+       matrice[0] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[1] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[2] = new int[MAX_SIZE] {0,0,1,1,0};
+       matrice[3] = new int[MAX_SIZE] {0,0,1,1,0};
+       matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
     if(type == FORMES)
     {
-        int matrice[MAX_SIZE][MAX_SIZE] = 
-        {{0,0,0,0,0},
-        {0,0,0,0,0},
-        {0,0,1,1,0},
-        {0,1,1,0,0},
-        {0,0,0,0,0}};
-        
+       matrice = new int*[MAX_SIZE];
+       matrice[0] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[1] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[2] = new int[MAX_SIZE] {0,0,1,1,0};
+       matrice[3] = new int[MAX_SIZE] {0,1,1,0,0};
+       matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
     if(type == FORMET)
     {
-        int matrice[MAX_SIZE][MAX_SIZE] = 
-        {{0,0,0,0,0},
-        {0,0,1,0,0},
-        {0,1,1,1,0},
-        {0,0,0,0,0},
-        {0,0,0,0,0}};
+       matrice = new int*[MAX_SIZE];
+       matrice[0] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[1] = new int[MAX_SIZE] {0,0,1,0,0};
+       matrice[2] = new int[MAX_SIZE] {0,1,1,1,0};
+       matrice[3] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
     if(type == FORMEZ)
     {
-        int matrice[MAX_SIZE][MAX_SIZE] = 
-        {{0,0,0,0,0},
-        {0,0,0,0,0},
-        {0,1,1,0,0},
-        {0,0,1,1,0},
-        {0,0,0,0,0}};
+       matrice = new int*[MAX_SIZE];
+       matrice[0] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[1] = new int[MAX_SIZE] {0,0,0,0,0};
+       matrice[2] = new int[MAX_SIZE] {0,1,1,0,0};
+       matrice[3] = new int[MAX_SIZE] {0,0,1,1,0};
+       matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
 }
+
+Forme::~Forme()
+{
+    delete [] matrice;
+}
+
 int Forme::getX()
 {
     return x;
@@ -98,10 +97,11 @@ void Forme::tourner()
 
 void Forme:: tourner(int direction)
 {
-    int tmp[MAX_SIZE][MAX_SIZE];
+    int **tmp = new int*[MAX_SIZE];
 
     for(int i=0;i< MAX_SIZE;i++)
     {
+        tmp[i] = new int[MAX_SIZE];
         for(int j=0;j< MAX_SIZE;j++)
         {
             if(direction == GAUCHE)
@@ -115,19 +115,18 @@ void Forme:: tourner(int direction)
         }
     }
 
-    for(int i=0;i< MAX_SIZE;i++)
-    {
-        for(int j=0;j< MAX_SIZE;j++)
-        {
-            matrice[i][j] =            tmp[i][j] ;
-        }
-    }
 
+    delete matrice;
+    matrice = tmp;
 }
 
 
 int Forme::getTile(int i, int j)
 {
+    if(i > MAX_SIZE || j > MAX_SIZE)
+    {
+        return -1;
+    }
     return matrice[i][j];
 }
 #
