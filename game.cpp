@@ -76,9 +76,16 @@ void Game ::descendreForme(Forme *forme)
     {
         forme->setY(forme->getY() - 1);
         formeVersBoard(forme);
-        detruireForme(forme);
-        nouvelleForme(forme);
+        changerForme();
     }
+}
+void Game ::changerForme()
+{
+    Forme *tmp = new Forme(rand() % FORMEZ);
+    tmp->setX(5);
+    tmp->setY(2);
+    delete curForme;
+    curForme = tmp;
 }
 void Game ::tournerForme(Forme *forme)
 {
@@ -104,7 +111,10 @@ void Game ::formeVersBoard(Forme *forme)
     {
         for (int j = 0; j < MAX_SIZE; j++)
         {
-            board[yforme + (i - 2)][xforme + (j - 2)] = forme->getTile(i, j);
+            if(forme->getTile(i,j) == 1)
+            {
+                board[yforme + (i - 2)][xforme + (j - 2)] = forme->getTile(i, j);
+            }
         }
     }
 }
