@@ -46,20 +46,21 @@ void Game ::afficher()
     cout << flush;
 }
 
-bool Game ::collision(Forme *forme)
+bool Game::collision(Forme *forme)
 {
     int xCentreForme = forme->getX();
     int yCentreForme = forme->getY();
     int xGlobal;
-    int yGlobal; 
+    int yGlobal;
     for (int i = 0; i < MAX_SIZE; i++)
     {
         for (int j = 0; j < MAX_SIZE; j++)
         {
-            xGlobal = xCentreForme + (j-2);
-            yGlobal = yCentreForme + (i-2);
-            if (forme->getTile(i,j) == 1 && ( board[yGlobal][xGlobal] == 1 || yGlobal >= 23))
+            xGlobal = xCentreForme + (j - 2);
+            yGlobal = yCentreForme + (i - 2);
+            if (forme->getTile(i, j) == 1 && (board[yGlobal][xGlobal] == 1 || yGlobal >= 23 || xGlobal < 0 || xGlobal > 9))
             {
+                cout << "xGlobal: " << xGlobal << endl;
                 return true;
             }
         }
@@ -73,7 +74,7 @@ void Game ::input()
     {
         int pressedChar;
         pressedChar = getch();
-        switch(pressedChar)
+        switch (pressedChar)
         {
         case FLECHE_HAUT:
             tournerForme(curForme);
@@ -84,7 +85,7 @@ void Game ::input()
             afficher();
             break;
         case FLECHE_GAUCHE:
-            bougerForme(curForme, -1,0);
+            bougerForme(curForme, -1, 0);
             afficher();
             break;
         case FLECHE_BAS:
@@ -137,8 +138,8 @@ void Game ::formeVersBoard(Forme *forme)
     {
         for (int j = 0; j < MAX_SIZE; j++)
         {
-            cout << forme->getTile(i,j);
-            if(forme->getTile(i,j) == 1)
+            cout << forme->getTile(i, j);
+            if (forme->getTile(i, j) == 1)
             {
                 board[yforme + (i - 2)][xforme + (j - 2)] = forme->getTile(i, j);
             }
@@ -147,7 +148,7 @@ void Game ::formeVersBoard(Forme *forme)
     }
 }
 
-void Game ::loop()
+void Game::loop()
 {
     afficher();
     while (true)
@@ -162,18 +163,46 @@ void Game ::loop()
     }
 }
 
-    void Game::bougerForme(Forme *forme, int x, int y)
+void Game::bougerForme(Forme *forme, int x, int y)
+{
+    int xInitial = forme->getX();
+    int yInitial = forme->getY();
+    if (x > 0)
     {
-        forme->setX(forme->getX() + x); 
-        for(int i = 0; i < y; i++)
+
+        for (int i = 0; i <= x; i++)
         {
-            forme->setY(forme->getY() + 1); 
+            forme->setX(xInitial + i);
+            cout << "xInitial + i: " << xInitial << "+" << i << "=" << xInitial + i << endl;
             if (collision(forme) == true)
             {
-                forme->setY(forme->getY() - 1);
-                formeVersBoard(forme);
-                changerForme();
+                forme->setX(xInitial + i - 1);
                 break;
             }
-        } 
+        }
     }
+    else if (x < 0)
+    {
+        for (int i = 0; i >= x; i--)
+        {
+            forme->setX(xInitial + i);
+            cout << "xInitial + i: " << xInitial << "+" << i << "=" << xInitial + i << endl;
+            if (collision(forme) == true)
+            {
+                forme->setX(xInitial + i + 1);
+                break;
+            }
+        }
+    }
+    for (int i = 0; i <= y; i++)
+    {
+        forme->setY(yInitial + i);
+        if (collision(forme) == true)
+        {
+            forme->setY(yInitial + i - 1);
+            formeVersBoard(forme);
+            changerForme();
+            break;
+        }
+    }
+}

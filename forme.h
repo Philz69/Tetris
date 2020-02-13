@@ -4,7 +4,7 @@
 #include <math.h>
 #include <iostream>
 #define MAX_SIZE 5
-#define GAUCHE 0
+#define GAUCHE -1
 #define DROITE 1
 #define FORMEI 0
 #define FORMEJ 1
