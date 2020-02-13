@@ -119,7 +119,7 @@ void Game::shiftBoard(int index)
 
 void Game::mort()
 {
-    if(curForme->getY < 3 && collision(curForme) == true)
+    if(curForme->getY() < 3 && collision(curForme) == true)
     {
         alive = false;
     }
