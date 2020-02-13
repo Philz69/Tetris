@@ -14,6 +14,8 @@ class Game
         ~Game();
         void afficher();
         bool collision(Forme *forme);
+        void ligneComplete();
+        void shiftBoard(int index);
         void input();
         void bougerForme(Forme *forme, int x, int y);
         void changerForme();

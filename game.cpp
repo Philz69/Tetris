@@ -58,7 +58,7 @@ bool Game::collision(Forme *forme)
         {
             xGlobal = xCentreForme + (j - 2);
             yGlobal = yCentreForme + (i - 2);
-            if (forme->getTile(i, j) == 1 && (board[yGlobal][xGlobal] == 1 || yGlobal >= 23 || xGlobal < 0 || xGlobal > 9))
+            if (forme->getTile(i, j) == 1 && (board[yGlobal][xGlobal] == 1 || yGlobal > 23 || xGlobal < 0 || xGlobal > 9))
             {
                 cout << "xGlobal: " << xGlobal << endl;
                 return true;
@@ -67,6 +67,39 @@ bool Game::collision(Forme *forme)
     }
 
     return false;
+}
+
+void Game::ligneComplete()
+{
+    int lignePleine = 1;
+    for (int i = 0; i < HAUTEUR; i++)
+    {
+        lignePleine = 1;
+        for (int j = 0; j < LARGEUR; j++)
+        {
+           if(board[i][j] != 1)
+           {
+              lignePleine = 0;
+           }
+        }
+        if(lignePleine == 1)
+        {
+            shiftBoard(i);
+            i--;
+        }
+    }
+
+}
+
+void Game::shiftBoard(int index)
+{
+    for(int i = index; i > 0; i--)
+    {
+        for(int j = 0; j < LARGEUR; j++)
+        {
+            board[i][j] = board[i-1][j];
+        }
+    }
 }
 void Game ::input()
 {
@@ -191,7 +224,9 @@ void Game::loop()
         input();
         if (std::chrono::high_resolution_clock::now() - lastAction > std::chrono::milliseconds{500})
         {
-            bougerForme(curForme, 0, -1);
+            bougerForme(curForme, 0, 1);
+            afficher();
+            ligneComplete();
             afficher();
             lastAction = std::chrono::high_resolution_clock::now();
         }
