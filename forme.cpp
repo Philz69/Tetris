@@ -68,6 +68,7 @@ Forme::Forme(int type)
        matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
     typeForme = type;
+    ispreview = false;
 }
 
 Forme::~Forme()
