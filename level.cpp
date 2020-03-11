@@ -3,8 +3,15 @@
 Level::Level()
 {
     tickTime = 800;
-    pointMultiplier = 1;
     levelNumber = 0;
+}
+
+void Level::update(int linesCleared)
+{
+    if(linesCleared / 10 > levelNumber)
+    {
+        next();
+    }
 }
 
 void Level::next()
@@ -23,7 +30,27 @@ int Level::getTickTime()
     return tickTime;
 }
 
-int Level::getPointMultiplier()
+
+int Level::getScore(int lines)
 {
-    return pointMultiplier;
+	if(lines == 1)
+	{
+		return 40*(levelNumber + 1);
+	}
+	else if(lines == 2)
+	{
+		return 100*(levelNumber + 1);
+	}
+	else if(lines == 3)
+	{
+		return 300*(levelNumber + 1);
+	}
+	else if(lines > 3)
+	{
+		return 300*lines*(levelNumber + 1);
+	}
+    else
+    {
+        return 0;
+    }
 }

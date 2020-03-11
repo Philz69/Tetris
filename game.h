@@ -31,6 +31,7 @@ class Game
         Level level;
         int board[HAUTEUR][LARGEUR] = {0};
         int score;
+        int linesCleared;
         bool alive; 
         std::chrono::time_point<std::chrono::high_resolution_clock> lastAction, curTime;
 };

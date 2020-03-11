@@ -16,6 +16,7 @@ Game ::Game()
     lastAction = std::chrono::high_resolution_clock::now();
     alive = true;
     score = 0;
+    linesCleared = 0;
 }
 Game ::~Game()
 {
@@ -48,7 +49,8 @@ void Game ::afficher()
         }
         cout << "|" << '\n';
     }
-    cout << "______" << '\n';
+    cout << "______" << "Level: " << level.getLevelNumber() << '\n';
+    cout << "Lines cleared: " << linesCleared;
     cout << flush;
     delete preview;
 }
@@ -97,22 +99,8 @@ void Game::ligneComplete()
             i--;
         }
     }
-	if(nmbLignes == 1)
-	{
-		score += 40;
-	}
-	if(nmbLignes == 2)
-	{
-		score += 100;
-	}
-	if(nmbLignes == 3)
-	{
-		score += 300;
-	}
-	if(nmbLignes > 3)
-	{
-		score += 400 * nmbLignes;
-	}
+    score += level.getScore(nmbLignes);
+    linesCleared += nmbLignes;
 }
 void Game::shiftBoard(int index)
 {
@@ -208,7 +196,7 @@ void Game::bougerForme(Forme *forme, int x, int y)
 
 void Game ::changerForme()
 {
-    Forme *tmp = new Forme(rand() % FORMEZ);
+    Forme *tmp = new Forme(FORMEI);//rand() % FORMEZ);
     tmp->setX(5);
     tmp->setY(2);
     delete curForme;
@@ -252,13 +240,15 @@ void Game::loop()
     while (alive)
     {
         input();
-        if (std::chrono::high_resolution_clock::now() - lastAction > std::chrono::milliseconds{500})
+        level.update(linesCleared);
+        if (std::chrono::high_resolution_clock::now() - lastAction > std::chrono::milliseconds{level.getTickTime()})
         {
             bougerForme(curForme, 0, 1);
             afficher();
             ligneComplete();
             afficher();
             mort();
+            level.update(linesCleared);
             lastAction = std::chrono::high_resolution_clock::now();
         }
     }
