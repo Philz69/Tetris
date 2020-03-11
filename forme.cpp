@@ -69,6 +69,8 @@ Forme::Forme(int type)
     }
     typeForme = type;
     ispreview = false;
+    x = 5;
+    y = 2;
 }
 
 Forme::~Forme()

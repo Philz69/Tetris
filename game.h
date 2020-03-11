@@ -28,6 +28,7 @@ class Game
     private:
         Forme *curForme;
         Forme *preview;
+        Forme *prochaineForme;
         Level level;
         int board[HAUTEUR][LARGEUR] = {0};
         int score;

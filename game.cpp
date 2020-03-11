@@ -11,6 +11,7 @@ Game ::Game()
 {
     srand(time(NULL));
     curForme = new Forme(rand() % FORMEZ);
+    prochaineForme = new Forme(rand() % FORMEZ);
     curForme->setX(4);
     curForme->setY(2);
     lastAction = std::chrono::high_resolution_clock::now();
@@ -196,11 +197,15 @@ void Game::bougerForme(Forme *forme, int x, int y)
 
 void Game ::changerForme()
 {
-    Forme *tmp = new Forme(rand() % FORMEZ);
-    tmp->setX(5);
-    tmp->setY(2);
+    int typeProchaineForme;
     delete curForme;
-    curForme = tmp;
+    curForme = prochaineForme;
+    typeProchaineForme = rand() % FORMEZ;
+    if(typeProchaineForme == curForme->getType())
+    {  
+        typeProchaineForme == rand()% FORMEZ;
+    }
+    prochaineForme = new Forme(typeProchaineForme);
 }
 
 void Game ::tournerForme(Forme *forme)
