@@ -1,4 +1,5 @@
 #include "forme.h"
+#include "level.h"
 #include <chrono>
 #include <stdlib.h>
 #include <iostream>
@@ -27,6 +28,7 @@ class Game
     private:
         Forme *curForme;
         Forme *preview;
+        Level level;
         int board[HAUTEUR][LARGEUR] = {0};
         int score;
         bool alive; 
