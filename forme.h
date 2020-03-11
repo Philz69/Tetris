@@ -31,11 +31,14 @@ class Forme
         int getTile(int i, int j);  
         int getTileGlobal(int i, int j);
         int getType();
+        bool isPreview();
+        void setPreview(bool val);
     private:
         int x;
         int y;
         int **matrice;
         int typeForme;
+        bool ispreview;
 };
 
 

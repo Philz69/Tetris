@@ -25,6 +25,7 @@ Game ::~Game()
 void Game ::afficher()
 {
     preview = curForme->copy();
+    preview->setPreview(true);
     bougerForme(preview, 0, 23);
     cout << "__" << setw(5) << score << "__" << '\n';
     for (int i = 0; i < HAUTEUR; i++)
@@ -194,8 +195,11 @@ void Game::bougerForme(Forme *forme, int x, int y)
         if (collision(forme) == true)
         {
             forme->setY(yInitial + i - 1);
-            formeVersBoard(forme);
-            changerForme();
+            if(!forme->isPreview())
+            {
+                formeVersBoard(forme);
+                changerForme();
+            }
             break;
         }
     }

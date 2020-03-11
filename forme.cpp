@@ -150,6 +150,16 @@ int Forme::getType()
     return typeForme;
 }
 
+void Forme::setPreview(bool val)
+{
+    ispreview = val;
+}
+
+bool Forme::isPreview()
+{
+    return ispreview;
+}
+
 Forme* Forme::copy()
 {
     Forme *copy = new Forme(typeForme);
