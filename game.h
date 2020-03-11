@@ -26,6 +26,7 @@ class Game
         void loop();
     private:
         Forme *curForme;
+        Forme *preview;
         int board[HAUTEUR][LARGEUR] = {0};
         int score;
         bool alive; 

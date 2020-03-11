@@ -24,6 +24,7 @@ Game ::~Game()
 
 void Game ::afficher()
 {
+
     cout << "__" << setw(5) << score << "__" << '\n';
     for (int i = 0; i < HAUTEUR; i++)
     {

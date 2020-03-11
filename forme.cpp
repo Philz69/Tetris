@@ -149,3 +149,18 @@ int Forme::getType()
 {
     return typeForme;
 }
+
+Forme* Forme::copy()
+{
+    Forme *copy = new Forme(typeForme);
+    copy->setX(x);
+    copy->setY(y);
+    for(int i = 0; i < MAX_SIZE; i++)
+    {
+        for(int j = 0; j < MAX_SIZE; j++)
+        {
+            copy->matrice[i][j] = matrice[i][j];
+        }
+    }
+    return copy;
+}

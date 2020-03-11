@@ -23,6 +23,7 @@ class Forme
         ~Forme();
         void tourner();
         void tourner(int direction);
+        Forme* copy();
         void setX(int x1);
         void setY(int y1);
         int getX();
