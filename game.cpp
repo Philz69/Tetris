@@ -24,7 +24,8 @@ Game ::~Game()
 
 void Game ::afficher()
 {
-
+    preview = curForme->copy();
+    bougerForme(preview, 0, 23);
     cout << "__" << setw(5) << score << "__" << '\n';
     for (int i = 0; i < HAUTEUR; i++)
     {
@@ -35,6 +36,10 @@ void Game ::afficher()
             {
                 cout << "#";
             }
+            else if (preview->getTileGlobal(i,j) == 1)
+            {
+                cout << "o";
+            }
             else
             {
                 cout << " ";
@@ -44,6 +49,7 @@ void Game ::afficher()
     }
     cout << "______" << '\n';
     cout << flush;
+    delete preview;
 }
 
 bool Game::collision(Forme *forme)
