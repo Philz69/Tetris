@@ -196,7 +196,7 @@ void Game::bougerForme(Forme *forme, int x, int y)
 
 void Game ::changerForme()
 {
-    Forme *tmp = new Forme(FORMEI);//rand() % FORMEZ);
+    Forme *tmp = new Forme(rand() % FORMEZ);
     tmp->setX(5);
     tmp->setY(2);
     delete curForme;
