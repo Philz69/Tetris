@@ -48,7 +48,20 @@ void Game ::afficher()
                 cout << " ";
             }
         }
-        cout << "|" << '\n';
+        cout << "|";
+        for(int j = 0; j < LARGEUR; j++)
+        {
+        
+           if(prochaineForme->getTileGlobal(i,j) == 1)
+           {
+               cout << "o";
+           }
+           else
+           {
+               cout << " ";
+           }
+        }
+        cout << '\n';
     }
     cout << "______" << "Level: " << level.getLevelNumber() << '\n';
     cout << "Lines cleared: " << linesCleared;
