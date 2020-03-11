@@ -67,6 +67,7 @@ Forme::Forme(int type)
        matrice[3] = new int[MAX_SIZE] {0,0,1,1,0};
        matrice[4] = new int[MAX_SIZE] {0,0,0,0,0};
     }
+    typeForme = type;
 }
 
 Forme::~Forme()
@@ -143,4 +144,8 @@ int Forme::getTileGlobal(int i, int j)
             {
                 return 0;
             }
+}
+int Forme::getType()
+{
+    return typeForme;
 }

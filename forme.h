@@ -29,10 +29,12 @@ class Forme
         int getY();
         int getTile(int i, int j);  
         int getTileGlobal(int i, int j);
+        int getType();
     private:
         int x;
         int y;
         int **matrice;
+        int typeForme;
 };
 
 
